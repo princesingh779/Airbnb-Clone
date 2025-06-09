@@ -21,9 +21,9 @@
           <a href="/home/<%=home._id%>"
             ><img src="<%= home.photos[0] %>" alt="Place Image"
           /></a>
-
-          <% if(user.type==='user') { %> <%-
-          include('../partials/favourite',{home:home})%> <% } %>
+         
+          <% if(user && user.type==='user') { %>
+             <%- include('../partials/favourite',{home:home})%> <% } %>
         </div>
 
         <div class="house-details">
