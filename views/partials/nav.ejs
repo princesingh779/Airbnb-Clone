@@ -3,12 +3,15 @@
     <img src="/images/fonticon.png" alt="hello" />
   </div>
 
-  <nav class="nav">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <nav class="nav" id="mainNav">
     <a href="/"> Home </a>
     <% if(isLoggedIn) { %> <%if(user.type === 'user'){ %>
     <a href="/bookings">Bookings</a>
     <a href="/favourites">Favorite</a>
-
     <% } else { %>
     <a href="/host-homes">Host Homes</a>
     <a href="/add-homes"> Add your home</a>
@@ -19,7 +22,22 @@
     <form action="/auth/logout" method="post">
       <button class="logout-btn" type="submit">Logout</button>
     </form>
-
     <% } %>
   </nav>
 </header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const navToggle = document.getElementById("navToggle");
+    const mainNav = document.getElementById("mainNav");
+    navToggle.addEventListener("click", function () {
+      mainNav.classList.toggle("open");
+    });
+    // Optional: Close nav when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!navToggle.contains(e.target) && !mainNav.contains(e.target)) {
+        mainNav.classList.remove("open");
+      }
+    });
+  });
+</script>

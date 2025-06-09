@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/form.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <title>Fancy House Registration</title>
   </head>
   <body>
@@ -100,7 +104,7 @@
 
           <!-- Charges per Day -->
           <label for="description">Description:</label>
-          <textarea name="description" placeholder="Describe your home : ">
+          <textarea name="description" class="home-description" placeholder="Describe your home : ">
  <%=editing?home.description:'' %></textarea
           >
           <!-- Submit Button -->

@@ -1,49 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bookings</title>
-    <style>
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #fff;
-        padding: 15px 30px;
-        border-bottom: 1px solid pink;
-      }
-      .logo img {
-        height: 50px;
-      }
-
-      .nav {
-        display: flex;
-        gap: 20px;
-      }
-
-      .nav a {
-        text-decoration: none;
-        color: black;
-        font-size: 20px;
-        padding: 8px 12px;
-        border-radius: 5px;
-        font-weight: 500;
-        transition: background 0.3s;
-      }
-
-      .nav a:hover {
-        background: #fff;
-        border: 1px solid pink;
-      }
-    </style>
-  </head>
-  <body>
-    <%- include('../partials/nav')%>
-    <h2>My Booking will appear here</h2>
-  </body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookings</title>
     <link rel="stylesheet" href="/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <style>
       .booking-container {
         max-width: 900px;
@@ -91,6 +49,12 @@
         color: #888;
         font-size: 1.1rem;
         margin-top: 24px;
+      }
+
+      @media (max-width: 900px) {
+        .booking-container {
+          padding: 32px 12px;
+        }
       }
     </style>
   </head>
