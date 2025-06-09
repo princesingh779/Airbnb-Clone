@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pagetitle %></title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+
+    <h1 class="main-heading">Home Details</h1>
+    <div class="home-details-flex">
+      <div class="image-gallery">
+        <img
+          src="<%= home.photos[0] %>"
+          class="main-image"
+          id="mainImage"
+          alt="Home Image"
+        />
+        <div class="thumbnails">
+          <% home.photos.forEach(function(photo, idx) { %>
+          <img
+            src="<%= photo %>"
+            class="thumbnail-img<%= idx === 0 ? ' selected' : '' %>"
+            data-index="<%= idx %>"
+            alt="Thumbnail <%= idx+1 %>"
+          />
+          <% }) %>
+        </div>
+      </div>
+      <div class="details-section">
+        <div class="section">
+          <h3 class="section-title">Description</h3>
+          <p class="section-text"><%= home.description %></p>
+        </div>
+        <div class="section">
+          <h3 class="section-title">Location</h3>
+          <p class="section-text"><%= home.location %></p>
+        </div>
+        <div class="section">
+          <h3 class="section-title">Price</h3>
+          <p class="price">$<%= home.price %> / night</p>
+        </div>
+        <div class="section">
+          <h3 class="section-title">Rating</h3>
+          <div class="rating">
+            <span class="star">★</span>
+            <span class="rating-text"><%= home.rating %> / 5</span>
+          </div>
+        </div>
+        <%- include('../partials/favourite') %>
+      </div>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>
+
+<script>
+  // Simple gallery script
+  const mainImage = document.getElementById("mainImage");
+  const thumbnails = document.querySelectorAll(".thumbnail-img");
+  thumbnails.forEach((thumb) => {
+    thumb.addEventListener("click", function () {
+      mainImage.src = this.src;
+      thumbnails.forEach((t) => t.classList.remove("selected"));
+      this.classList.add("selected");
+    });
+  });
+</script>

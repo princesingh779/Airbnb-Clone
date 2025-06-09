@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <title>Fancy House Registration</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="page-content">
+      <div class="form-container">
+        <h2><%=editing ?"Edit ": "Add "%> House</h2>
+
+        <form
+          action="<%= editing ? '/edit-home':'/add-home'%>"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="hidden" name="_id" value="<%=editing ? home._id:''%>" />
+
+          <% if(editing && home.photo){ %>
+          <div class="existing-image">
+            <p>Current House Image:</p>
+            <img
+              src=" <%=home.photo%>"
+              alt="Current House Image "
+              width="200"
+            />
+          </div>
+          <% } %>
+          <input
+            type="hidden"
+            name="existingImage"
+            value="<%= editing?home.photo:'' %>"
+          />
+          <!-- House Image Upload -->
+          <label for="photo">Upload House Image:</label>
+          <input
+            multiple
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+          />
+          <!-- Location Dropdown -->
+          <label for="location">Select Location:</label>
+          <select id="location" name="location" required>
+            <option value="<%=editing?home.location:'-- Select a City --'%>">
+              <%=editing?home.location:'-- Select a City --'%>
+            </option>
+            <option value="Delhi">Delhi</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Pune">Pune</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+            <option value="Jaipur">Jaipur</option>
+            <option value="Lucknow">Lucknow</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <!-- Date Selection -->
+          <label for="date">Available From:</label>
+          <input
+            type="datetime-local"
+            id="date"
+            name="date"
+            value="<%=editing?home.date:'' %>"
+            required
+          />
+
+          <!-- Charges per Day -->
+          <label for="price">Charges Per Day (₹):</label>
+          <input
+            type="number"
+            id="price"
+            name="price"
+            min="2000"
+            placeholder="Enter amount"
+            value="<%=editing?home.price:'' %>"
+            required
+          />
+
+          <!-- Rating Dropdown -->
+          <label for="rating">Rating:</label>
+          <select id="rating" name="rating" required>
+            <option value="<%=editing?home.rating:'' %>">
+              <%=editing?home.rating:'-- Select Rating --' %>
+            </option>
+            <option value="1">⭐ (1 Star)</option>
+            <option value="2">⭐⭐ (2 Stars)</option>
+            <option value="3">⭐⭐⭐ (3 Stars)</option>
+            <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+            <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+          </select>
+
+          <!-- Charges per Day -->
+          <label for="description">Description:</label>
+          <textarea name="description" placeholder="Describe your home : ">
+ <%=editing?home.description:'' %></textarea
+          >
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">
+            <%=editing? 'Update Home':'Add Home' %>
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

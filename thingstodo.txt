@@ -1,0 +1,5 @@
+// Tasks to do: 
+
+Whenever u are deleting an home entry its all entry will be deleted from the MongoDB but its image still remains in cloudinary so make a method when u delete the home its relative image also be deleted.
+
+When you are editing the home if its image is same as the previous image then do nothing otherwise delete the previous image and store the new one in cloudinary.

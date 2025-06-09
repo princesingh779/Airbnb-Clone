@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookings</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <h1 class="main-heading">Your Favourite Homes.</h1>
+    <!-- <pre><%=favouritemHomes%></pre> -->
+    <div class="grid-container">
+      <% favouritemHomes.forEach((home) =>{ %>
+      <div class="card">
+        <img src="<%= home.photos[0] %>" alt="Place Image" />
+        <div class="house-details">
+          <div class="card-content">
+            <h3><%= home.location %></h3>
+            <p>Date: <%=home.currdate%></p>
+
+            <p>Charges: $<%=home.price %></p>
+          </div>
+
+          <div class="card-content card-rating">
+            <p class="rating">Rating: <%= home.rating %></p>
+          </div>
+        </div>
+        <div class="remove-favourite">
+          <form
+            action="/favourites/delete/<%=home._id.toString()%>"
+            method="post"
+          >
+            <button class="remove-favbtn" type="submit">&times;</button>
+          </form>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+
+    <%- include('../partials/footer') %>
+  </body>
+</html>

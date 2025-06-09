@@ -1,0 +1,14 @@
+<% if(errorMessages.length >0 ){%>
+<div class="alerts">
+  <strong>Error!</strong>
+  <span>
+    <% errorMessages.forEach(error => { %>
+    <li><%=error %></li>
+    <% });%>
+  </span>
+  <span class="cancel">
+    <i class="fas fa-times"></i>
+  </span>
+</div>
+
+<% }%>

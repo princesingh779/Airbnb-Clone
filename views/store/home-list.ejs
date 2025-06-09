@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airbnb | Holiday, Rentals and more !></title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    </head>
+  <body>
+    <%- include('../partials/nav') %>
+
+    <div class="grid-container">
+      <% homeDetails.forEach((home) =>{ %>
+      <div class="card">
+        <div class="image-container">
+          <a href="/home/<%=home._id%>"
+            ><img src="<%= home.photos[0] %>" alt="Place Image"
+          /></a>
+
+          <% if(user.type==='user') { %> <%-
+          include('../partials/favourite',{home:home})%> <% } %>
+        </div>
+
+        <div class="house-details">
+          <div class="card-content">
+            <h3><%=home.hometype%> in <%= home.location %></h3>
+            <p>₹<%=home.price %> for 2 nights</p>
+            <p>Avl. date: <%=home.currdate%></p>
+          </div>
+
+          <div class="card-content card-rating">
+            <span class="star">★</span>
+            <%=home.rating%>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+
+  </div>
+
+  <%- include('../partials/footer') %>
+</body>
+
+</html>
+
+<!-- AJAX Scripts -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const favButtons = document.querySelectorAll(".favbtn");
+
+    favButtons.forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const homeId = btn.dataset.homeId;
+
+        // Visually toggle heart to pink immediately
+        btn.classList.add("active");
+        btn.querySelector("i").classList.remove("far");
+        btn.querySelector("i").classList.add("fas");
+
+        // Send to backend using fetch()
+        try {
+          const response = await fetch("/favourites", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: homeId }),
+          });
+
+          if (response.ok) {
+            // Redirect after a small delay
+            setTimeout(() => {
+              window.location.href = "/favourites";
+            }, 1000); // 1-second delay
+          } else {
+            console.error("Failed to add to favourites");
+          }
+        } catch (err) {
+          console.error("Error:", err);
+        }
+      });
+    });
+  });
+</script>

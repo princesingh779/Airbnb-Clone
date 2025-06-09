@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <title>Login Page</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="page-content">
+      <div class="form-container">
+        <form action="/auth/login" method="post">
+          <!-- Username -->
+          <h2>Login Here</h2>
+          <%- include('../partials/errors') %>
+
+          <input
+            type="email"
+            name="email"
+            placeholder="test@gmail.com"
+            value="<%= oldInput.email?oldInput.email:''%>"
+            required
+          />
+
+          <!-- Password  -->
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Type Your Password"
+            required
+          />
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn">Login</button>
+
+          <div class="login-redirect">
+            <span>Create a new account?</span>
+            <a href="/auth/signup" class="login-link">Register here</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

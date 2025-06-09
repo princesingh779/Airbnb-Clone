@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="stylesheet" href="/css/main.css"/>
+    <title>Signup Page</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="page-content">
+    <div class="form-container">
+      <form action="/auth/signup" method="post">
+        <h2 class="form-title">Sign Up</h2>
+
+        <%- include('../partials/errors') %>
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name "
+          value="<%=oldInput.firstName%>"
+          required
+        />
+
+        <input
+          type="text"
+          name="lastName"
+          value="<%=oldInput.lastName%>"
+          placeholder="Last Name "
+        />
+
+        <input
+          type="email"
+          name="email"
+          value="<%= oldInput.email%>"
+          placeholder="Enter E-mail / Username"
+          required
+        />
+
+        <select id="location" name="type" required>
+          <option value="">-- Select user type --</option>
+          <option value="host" <%=oldInput.type==='host'?'selected':'' %>>
+            Host
+          </option>
+          <option value="user" <%=oldInput.type==='user'?'selected':'' %>>
+            User
+          </option>
+        </select>
+
+        <!-- Password  -->
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter Your Password"
+          required
+        />
+        <div class="checkbox">
+          <label for="termsaccepted"
+            ><input type="checkbox" name="termsaccepted" />I accept the terms
+            and conditions</label
+          >
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Register here</button>
+
+        <div class="login-redirect">
+          <span>Already have an account?</span>
+          <a href="/auth/login" class="login-link">Login</a>
+        </div>
+      </form>
+    </div>
+    </div>
+  </body>
+</html>

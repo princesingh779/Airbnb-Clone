@@ -1,0 +1,11 @@
+<!-- <form action="/favourites" method="post">
+  <button type="submit" class="favbtn">Add to favourite</button>
+  <input type="hidden" name="id" class="favbtn" value="<%=home._id%>" />
+</form> -->
+
+<form action="/favourites" method="post" class="favourite-form">
+  <button type="submit" class="favbtn <%= home.isfavourite ? 'active' : '' %>" data-home-id="<%= home._id %>">
+    <i class="fa-heart <%= home.isfavourite ? 'fas' : 'far' %>"></i>
+  </button>
+  <!-- <input type="hidden" name="id" value="<%= home._id %>" /> -->
+</form>

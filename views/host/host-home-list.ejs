@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <title>Airbnb | Holiday, Rentals and more !</title>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+    <div class="grid-container">
+      <% homeDetails.forEach((home) =>{ %>
+      <div class="card">
+        <img src="<%= home.photos[0] %>" alt="Place Image" />
+        <div class="house-details">
+          <div class="card-content">
+            <h3><%= home.location %></h3>
+            <p>Date: <%=home.currdate%></p>
+            <!-- Static text doesn't need EJS syntax -->
+            <p>Charges: $<%=home.price %></p>
+            <!-- Static text doesn't need EJS syntax -->
+          </div>
+
+          <div class="card-content card-rating">
+            <p class="rating">Rating:</p>
+            <span> <%for(let i=0;i< home.rating;i++){%>⭐<%}%></span>
+          </div>
+        </div>
+        <a href="/edit-home/<%=home._id%>?editing=true" class="editBtn">Edit</a>
+        <form
+          action="/host/delete-home/<%=home._id%>"
+          method="post"
+          class="deleteForm"
+        >
+          <button type="submit" class="DeleteBtn">Delete</button>
+        </form>
+      </div>
+      <% }); %>
+    </div>
+  </body>
+</html>
